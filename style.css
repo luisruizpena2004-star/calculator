@@ -21,8 +21,13 @@
 .result {
     min-height: 100px;
     display: flex;
-    justify-content: end;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+small {
+    opacity: 50%;
 }
 
 output {
@@ -47,8 +52,16 @@ output {
 }
 
 .keyboard .result-btn {
+    flex: 1 1 60%;
     aspect-ratio: 4/1;
     background-color: #5dd7ff80;
+    border: 1px solid rgba(76, 171, 202, 0.224);
+    color: white;
+}
+
+.keyboard .clear-btn {
+    aspect-ratio: 4/1;
+    background-color: #ff5d5d80;
     border: 1px solid rgba(76, 171, 202, 0.224);
     color: white;
 }
