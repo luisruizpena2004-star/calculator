@@ -1,12 +1,62 @@
-let keyboardElem = document.querySelector(".keyboard");
-let output = document.querySelector("output");
-let firstArgumentElem = document.querySelector("#firstArgument");
-let operatorElem = document.querySelector("#operator");
+const keyboardElem = document.querySelector(".keyboard");
+const output = document.querySelector("output");
+const firstArgumentElem = document.querySelector("#firstArgument");
+const operatorElem = document.querySelector("#operator");
+
+const numberBtnElems = document.querySelectorAll("button[data-type='number']");
+const operatorBtnElems = document.querySelectorAll(
+    "button[data-type='operator']",
+);
+const clearBtnElem = document.querySelector("button[data-type='clear']");
+const backspaceBtnElem = document.querySelector("button[data-type='backspace'");
+const decimalBtnElem = document.querySelector("button[data-type='decimal'");
+
+const sortedNumberBtnElems = [...numberBtnElems].sort(
+    (a, b) => Number(a.textContent) - Number(b.textContent),
+);
+
+const allowedOperatorKeys = ["+", "-", "*", "/", "Enter"];
 
 let isResult = false;
 let firstArgument = null;
 let secondArgument = null;
 let operator = null;
+
+document.addEventListener("keydown", (e) => {
+    const keyName = event.key;
+    document.activeElement.blur();
+
+    if (!isNaN(keyName)) {
+        if (keyName === " ") return;
+        sortedNumberBtnElems
+            .find((item) => item.textContent === keyName)
+            .click();
+    } else if (keyName === ".") {
+        decimalBtnElem.click();
+    } else if (keyName === "Backspace") {
+        backspaceBtnElem.click();
+    } else if (keyName === "Delete") {
+        clearBtnElem.click();
+    } else if (allowedOperatorKeys.includes(keyName)) {
+        switch (keyName) {
+            case "+":
+                operatorBtnElems[0].click();
+                break;
+            case "-":
+                operatorBtnElems[1].click();
+                break;
+            case "*":
+                operatorBtnElems[2].click();
+                break;
+            case "/":
+                operatorBtnElems[3].click();
+                break;
+            case "Enter":
+                operatorBtnElems[4].click();
+                break;
+        }
+    }
+});
 
 keyboardElem.addEventListener("click", (e) => {
     const elem = e.target;
