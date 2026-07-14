@@ -47,6 +47,8 @@ small {
 output {
     font-size: 1.5rem;
     font-weight: 500;
+    overflow-x: auto;
+    max-width: 184px;
 }
 
 .keyboard {
